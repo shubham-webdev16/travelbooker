@@ -101,8 +101,8 @@ export default function HotelsPage() {
                   </label>
                   <Slider
                     min={0}
-                    max={15000}
-                    step={500}
+                    max={90000}
+                    step={1000}
                     value={priceRange}
                     onValueChange={setPriceRange}
                   />
