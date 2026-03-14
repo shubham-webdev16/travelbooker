@@ -167,7 +167,7 @@ export default function HotelsPage() {
             <div className="text-center py-20">
               <p className="text-xl text-muted-foreground">No hotels found matching your criteria.</p>
               <Button variant="outline" className="mt-4" onClick={() => { setSearch(""); setTypeFilter(""); setMinRating(0); setPriceRange([0, 15000]); }}>
-                Clear Filters
+                Clear All
               </Button>
             </div>
           )}
