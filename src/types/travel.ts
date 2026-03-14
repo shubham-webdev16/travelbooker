@@ -15,6 +15,39 @@ export interface Hotel {
   type: "hotel" | "resort" | "villa" | "apartment";
 }
 
+export interface Flight {
+  id: string;
+  airline: string;
+  airlineLogo: string;
+  from: string;
+  fromCode: string;
+  to: string;
+  toCode: string;
+  departTime: string;
+  arriveTime: string;
+  duration: string;
+  price: number;
+  stops: number;
+  class: "economy" | "business" | "first";
+  date: string;
+}
+
+export interface VacationPackage {
+  id: string;
+  name: string;
+  destination: string;
+  country: string;
+  duration: string;
+  price: number;
+  originalPrice: number;
+  rating: number;
+  reviewCount: number;
+  image: string;
+  includes: string[];
+  highlights: string[];
+  type: "beach" | "adventure" | "cultural" | "honeymoon" | "family" | "luxury";
+}
+
 export interface Booking {
   id: string;
   hotelId: string;

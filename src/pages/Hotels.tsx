@@ -13,7 +13,7 @@ import { Slider } from "@/components/ui/slider";
 export default function HotelsPage() {
   const [searchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("dest") || "");
-  const [priceRange, setPriceRange] = useState([0, 15000]);
+  const [priceRange, setPriceRange] = useState([0, 90000]);
   const [minRating, setMinRating] = useState(0);
   const [typeFilter, setTypeFilter] = useState("");
   const [sortBy, setSortBy] = useState("popular");
@@ -101,8 +101,8 @@ export default function HotelsPage() {
                   </label>
                   <Slider
                     min={0}
-                    max={15000}
-                    step={500}
+                    max={90000}
+                    step={1000}
                     value={priceRange}
                     onValueChange={setPriceRange}
                   />
@@ -166,8 +166,8 @@ export default function HotelsPage() {
           {filtered.length === 0 && (
             <div className="text-center py-20">
               <p className="text-xl text-muted-foreground">No hotels found matching your criteria.</p>
-              <Button variant="outline" className="mt-4" onClick={() => { setSearch(""); setTypeFilter(""); setMinRating(0); setPriceRange([0, 15000]); }}>
-                Clear Filters
+              <Button variant="outline" className="mt-4" onClick={() => { setSearch(""); setTypeFilter(""); setMinRating(0); setPriceRange([0, 90000]); }}>
+                Clear All
               </Button>
             </div>
           )}
