@@ -13,7 +13,7 @@ import { Slider } from "@/components/ui/slider";
 export default function HotelsPage() {
   const [searchParams] = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("dest") || "");
-  const [priceRange, setPriceRange] = useState([0, 15000]);
+  const [priceRange, setPriceRange] = useState([0, 90000]);
   const [minRating, setMinRating] = useState(0);
   const [typeFilter, setTypeFilter] = useState("");
   const [sortBy, setSortBy] = useState("popular");
