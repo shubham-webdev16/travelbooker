@@ -132,7 +132,19 @@ export default function PackagesPage() {
                         <span className="text-sm text-muted-foreground"> /person</span>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-primary text-primary-foreground">
+                    <Button size="sm" className="bg-primary text-primary-foreground" onClick={() => {
+                      openRazorpay({
+                        amount: pkg.price,
+                        hotelName: pkg.name,
+                        description: `${pkg.destination} | ${pkg.duration} | ${pkg.type}`,
+                        onSuccess: (res) => {
+                          toast({ title: "🎉 Package Booked!", description: `Payment ID: ${res.razorpay_payment_id}` });
+                        },
+                        onDismiss: () => {
+                          toast({ title: "Payment Cancelled", variant: "destructive" });
+                        },
+                      });
+                    }}>
                       Book Now <ArrowRight className="ml-1 h-3 w-3" />
                     </Button>
                   </div>
