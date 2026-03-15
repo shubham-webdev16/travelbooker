@@ -10,6 +10,7 @@ import { openRazorpay } from "@/lib/razorpay";
 import { useToast } from "@/hooks/use-toast";
 
 export default function FlightsPage() {
+  const { toast } = useToast();
   const [fromSearch, setFromSearch] = useState("");
   const [toSearch, setToSearch] = useState("");
   const [sortBy, setSortBy] = useState("price-low");
