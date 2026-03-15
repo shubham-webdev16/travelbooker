@@ -6,6 +6,8 @@ import { Footer } from "@/components/Footer";
 import { vacationPackages } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { openRazorpay } from "@/lib/razorpay";
+import { useToast } from "@/hooks/use-toast";
 
 const typeLabels: Record<string, string> = {
   beach: "🏖️ Beach",
@@ -17,6 +19,7 @@ const typeLabels: Record<string, string> = {
 };
 
 export default function PackagesPage() {
+  const { toast } = useToast();
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [sortBy, setSortBy] = useState("popular");
@@ -129,7 +132,19 @@ export default function PackagesPage() {
                         <span className="text-sm text-muted-foreground"> /person</span>
                       </div>
                     </div>
-                    <Button size="sm" className="bg-primary text-primary-foreground">
+                    <Button size="sm" className="bg-primary text-primary-foreground" onClick={() => {
+                      openRazorpay({
+                        amount: pkg.price,
+                        hotelName: pkg.name,
+                        description: `${pkg.destination} | ${pkg.duration} | ${pkg.type}`,
+                        onSuccess: (res) => {
+                          toast({ title: "🎉 Package Booked!", description: `Payment ID: ${res.razorpay_payment_id}` });
+                        },
+                        onDismiss: () => {
+                          toast({ title: "Payment Cancelled", variant: "destructive" });
+                        },
+                      });
+                    }}>
                       Book Now <ArrowRight className="ml-1 h-3 w-3" />
                     </Button>
                   </div>

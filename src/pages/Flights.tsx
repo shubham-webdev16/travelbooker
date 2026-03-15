@@ -6,8 +6,11 @@ import { Footer } from "@/components/Footer";
 import { flights } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { openRazorpay } from "@/lib/razorpay";
+import { useToast } from "@/hooks/use-toast";
 
 export default function FlightsPage() {
+  const { toast } = useToast();
   const [fromSearch, setFromSearch] = useState("");
   const [toSearch, setToSearch] = useState("");
   const [sortBy, setSortBy] = useState("price-low");
@@ -122,7 +125,19 @@ export default function FlightsPage() {
 
                   <div className="text-right flex flex-col items-end gap-2">
                     <p className="text-2xl font-bold text-primary">₹{flight.price.toLocaleString()}</p>
-                    <Button size="sm" className="bg-primary text-primary-foreground">
+                    <Button size="sm" className="bg-primary text-primary-foreground" onClick={() => {
+                      openRazorpay({
+                        amount: flight.price,
+                        hotelName: flight.airline,
+                        description: `${flight.fromCode} → ${flight.toCode} | ${flight.date} | ${flight.class}`,
+                        onSuccess: (res) => {
+                          toast({ title: "✈️ Flight Booked!", description: `Payment ID: ${res.razorpay_payment_id}` });
+                        },
+                        onDismiss: () => {
+                          toast({ title: "Payment Cancelled", variant: "destructive" });
+                        },
+                      });
+                    }}>
                       Book Now
                     </Button>
                   </div>
