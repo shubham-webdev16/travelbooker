@@ -6,6 +6,8 @@ import { Footer } from "@/components/Footer";
 import { vacationPackages } from "@/data/mockData";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { openRazorpay } from "@/lib/razorpay";
+import { useToast } from "@/hooks/use-toast";
 
 const typeLabels: Record<string, string> = {
   beach: "🏖️ Beach",
