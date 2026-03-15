@@ -51,7 +51,7 @@ export function openRazorpay({
   onDismiss?: () => void;
 }) {
   const options: RazorpayOptions = {
-    key: "rzp_test_1DP5mmOlF5G5ag", // Razorpay test key
+    key: "rzp_live_SR0NbRFqzlP85L", // Razorpay live key
     amount: amount * 100, // amount in paise
     currency: "INR",
     name: "Wanderlust",
