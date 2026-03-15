@@ -19,6 +19,7 @@ const typeLabels: Record<string, string> = {
 };
 
 export default function PackagesPage() {
+  const { toast } = useToast();
   const [search, setSearch] = useState("");
   const [typeFilter, setTypeFilter] = useState("");
   const [sortBy, setSortBy] = useState("popular");
